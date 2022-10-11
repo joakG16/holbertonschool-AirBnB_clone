@@ -2,6 +2,7 @@
 
 import json
 from os import path
+from models.base_model import BaseModel
 
 
 class FileStorage():
@@ -21,15 +22,18 @@ class FileStorage():
         :param obj: The object to be added to the dictionary
         """
         __class__.__objects[obj.__class__.__name__ +
-                            "." + obj.id] = obj.__dict__
+                            "." + obj.id] = obj
 
     def save(self):
         """
         It opens the file in write mode, dumps the contents
         of __objects into the file, and closes the file
         """
+        newDict = {}
+        for key, value in __class__.__objects.items():
+            newDict[key] = value.to_dict()
         with open(__class__.__file_path, 'w') as jsonFile:
-            jsonFile.write(json.dumps(__class__.__objects, default=str))
+            jsonFile.write(json.dumps(newDict, default=str))
 
     def reload(self):
         """
