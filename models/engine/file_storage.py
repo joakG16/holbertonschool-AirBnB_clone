@@ -23,14 +23,13 @@ class FileStorage():
         __class__.__objects[obj.__class__.__name__ +
                             "." + obj.id] = obj.__dict__
 
-
     def save(self):
         """
         It opens the file in write mode, dumps the contents
         of __objects into the file, and closes the file
         """
         with open(__class__.__file_path, 'w') as jsonFile:
-            json.dump(__class__.__objects, jsonFile)
+            jsonFile.write(json.dumps(__class__.__objects, default=str))
 
     def reload(self):
         """
