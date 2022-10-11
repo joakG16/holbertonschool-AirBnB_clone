@@ -15,18 +15,18 @@ class BaseModel:
                     self.id = value
                 elif key == 'my_number':
                     self.my_number = value
-                elif key == 'created_at':
-                    self.created_at = datetime.strptime(
-                        value, "%Y-%m-%dT%H:%M:%S.%f")
                 elif key == 'updated_at':
                     self.updated_at = datetime.strptime(
+                        value, "%Y-%m-%dT%H:%M:%S.%f")
+                elif key == 'created_at':
+                    self.created_at = datetime.strptime(
                         value, "%Y-%m-%dT%H:%M:%S.%f")
                 elif key == 'name':
                     self.name = value
         else:
             self.id = str(uuid.uuid4())
-            self.created_at = str(datetime.now())
-            self.updated_at = str(datetime.now())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
             storage.new(self)
 
     def __str__(self):
@@ -37,14 +37,13 @@ class BaseModel:
         """
         `save` updates the `updated_at` attribute of the object to the current time
         """
-        self.updated_at = str(datetime.now())
+        self.updated_at = datetime.now()
         storage.save()
 
     def to_dict(self):
         """
         It converts the object to a dictionary.
         """
-        print(f"-----++------- {newDict}-----++----")
         self.updated_at = self.updated_at.isoformat("T")
         self.created_at = self.created_at.isoformat("T")
         newDict = self.__dict__
