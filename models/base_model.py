@@ -2,6 +2,7 @@
 import uuid
 from datetime import datetime
 
+
 class BaseModel:
     def __init__(self):
         """
@@ -30,9 +31,3 @@ class BaseModel:
         newDict = self.__dict__
         newDict["__class__"] = __class__.__name__
         return newDict
-
-
-
-
-
-
