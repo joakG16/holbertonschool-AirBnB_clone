@@ -23,10 +23,12 @@ class BaseModel:
                         value, "%Y-%m-%dT%H:%M:%S.%f")
                 elif key == 'name':
                     self.name = value
+        #if no parameters where given
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
+            #calls 'new' method of the fileStorage class
             models.storage.new(self)
 
     def __str__(self):
@@ -44,6 +46,9 @@ class BaseModel:
         """
         It converts the object to a dictionary.
         """
+        # It's important to make a copy of the __dict__ instead of just
+        # referencing it, as we don't want to modify the original
+        # with this method custom format
         newDict = self.__dict__.copy()
         newDict['updated_at'] = self.updated_at.isoformat("T")
         newDict['created_at'] = self.created_at.isoformat("T")
