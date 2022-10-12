@@ -36,7 +36,7 @@ class HBNBCommand(cmd.Cmd):
             try:
                 eval(inputArgs[0])
             except:
-                print("** class doesn't exists **")
+                print("** class doesn't exist **")
                 errorHappened = True
 
         # NO ERRORS
