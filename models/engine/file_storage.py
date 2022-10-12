@@ -11,7 +11,7 @@ class FileStorage():
 
     def all(self):
         """
-        returns a dictionary of objects
+        returns a dictionary of stored objects
         """
         return __class__.__objects
 
@@ -27,11 +27,17 @@ class FileStorage():
     def save(self):
         """
         It opens the file in write mode, dumps the contents
-        of __objects into the file, and closes the file
+        of __objects into the file, and closes the file.
+        It is basically serializng the dictionary of obj.
+        into the json file.
         """
         newDict = {}
-        for key, value in __class__.__objects.items():
-            newDict[key] = value.to_dict()
+        for key in __class__.__objects:
+            newDict[key] = __class__.__objects[key]
+            print()
+            print(__class__.__objects[key])
+            print()
+
         with open(__class__.__file_path, 'w') as jsonFile:
             jsonFile.write(json.dumps(newDict, default=str))
 
