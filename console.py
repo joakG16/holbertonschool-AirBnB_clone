@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-
+""" Console """
 import cmd
 import sys
 
