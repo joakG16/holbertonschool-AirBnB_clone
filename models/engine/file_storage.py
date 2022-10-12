@@ -5,7 +5,7 @@ from os import path
 from models.base_model import BaseModel
 
 
-class FileStorage():
+class FileStorage:
     __file_path = "file.json"
     __objects = {}
 
@@ -17,7 +17,7 @@ class FileStorage():
 
     def new(self, obj):
         """
-        It sets a new object and adds it to the __objects dictionary.
+        It sets a new instance/object and adds it to the __objects dictionary.
 
         :param obj: The object to be added to the dictionary
         """
@@ -32,14 +32,12 @@ class FileStorage():
         into the json file.
         """
         newDict = {}
-        for key in __class__.__objects:
-            newDict[key] = __class__.__objects[key]
-            print()
-            print(__class__.__objects[key])
-            print()
+        for key in self.__objects.keys():  # only key
+            ''' setting values through indexing '''
+            newDict[key] = self.__objects[key].to_dict()
 
-        with open(__class__.__file_path, 'w') as jsonFile:
-            jsonFile.write(json.dumps(newDict, default=str))
+        with open(__class__.__file_path, 'w', encoding='utf-8') as jsonFile:
+            json.dump(newDict, jsonFile)
 
     def reload(self):
         """
@@ -47,4 +45,7 @@ class FileStorage():
         """
         if path.exists(__class__.__file_path):
             with open(__class__.__file_path, 'r') as jsonFile:
-                __class__.__objects = json.loads(jsonFile.read())
+                data = json.loads(jsonFile.read())
+                for key, value in data.items():
+                    __class__.__objects[key] = eval(
+                        value["__class__"])(**value)

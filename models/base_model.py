@@ -29,7 +29,6 @@ class BaseModel:
             self.updated_at = datetime.now()
             models.storage.new(self)
 
-
     def __str__(self):
         """ returns string representation of the object """
         return (f"[{__class__.__name__}] ({self.id}) {self.__dict__}")
@@ -45,8 +44,8 @@ class BaseModel:
         """
         It converts the object to a dictionary.
         """
-        self.updated_at = self.updated_at.isoformat("T")
-        self.created_at = self.created_at.isoformat("T")
-        newDict = self.__dict__
+        newDict = self.__dict__.copy()
+        newDict['updated_at'] = self.updated_at.isoformat("T")
+        newDict['created_at'] = self.created_at.isoformat("T")
         newDict["__class__"] = __class__.__name__
         return newDict
