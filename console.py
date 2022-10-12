@@ -5,6 +5,7 @@ import sys
 
 
 class HBNBCommand(cmd.Cmd):
+    """ Console """
     prompt = "(hbnb) "
 
     def do_quit(self, arg):
