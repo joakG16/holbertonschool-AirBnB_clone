@@ -32,15 +32,15 @@ class HBNBCommand(cmd.Cmd):
         if len(inputArgs) <= 0:
             print("** class name missing **")
             errorHappened = True
-        if errorHappened == False:
+        else:
             try:
                 eval(inputArgs[0])
-            except:
+            except Exception:
                 print("** class doesn't exist **")
                 errorHappened = True
 
         # NO ERRORS
-        if errorHappened == False:
+        if errorHappened is False:
             newInstance = eval(inputArgs[0])()
             storage.save()
             print(newInstance.id)
@@ -51,9 +51,32 @@ class HBNBCommand(cmd.Cmd):
         and id
         """
         inputArgs = arg.split()
-        objKey = f"{inputArgs[0]}.{inputArgs[1]}"
-        objDict = storage.all()
-        print(objDict[objKey])
+        errorHappened = False
+
+        # if the class name is missing
+        if len(inputArgs) <= 0:
+            print("** class name missing **")
+            errorHappened = True
+
+        # checks if the class name exists
+        elif errorHappened is False:
+            try:
+                eval(inputArgs[0])
+            except Exception:
+                print("** class doesn't exist **")
+                errorHappened = True
+        # if the instance id is missing
+        if len(inputArgs) < 2 and errorHappened is False:
+            print("** instance id missing  **")
+            errorHappened = True
+
+        if errorHappened is False:
+            try:
+                objKey = f"{inputArgs[0]}.{inputArgs[1]}"
+                objDict = storage.all()  # bringing the dict. of stored objects
+                print(objDict[objKey])  # find & print desired object using key
+            except Exception:
+                print("** no instance found **")
 
 
 if __name__ == '__main__':
