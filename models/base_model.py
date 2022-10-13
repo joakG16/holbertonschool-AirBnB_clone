@@ -23,17 +23,17 @@ class BaseModel:
                         value, "%Y-%m-%dT%H:%M:%S.%f")
                 elif key == 'name':
                     self.name = value
-        #if no parameters where given
+        # if no parameters where given
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
-            #calls 'new' method of the fileStorage class
+            # calls 'new' method of the fileStorage class
             models.storage.new(self)
 
     def __str__(self):
         """ returns string representation of the object """
-        return (f"[{__class__.__name__}] ({self.id}) {self.__dict__}")
+        return (f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}")
 
     def save(self):
         """
@@ -52,5 +52,5 @@ class BaseModel:
         newDict = self.__dict__.copy()
         newDict['updated_at'] = self.updated_at.isoformat("T")
         newDict['created_at'] = self.created_at.isoformat("T")
-        newDict["__class__"] = __class__.__name__
+        newDict["__class__"] = self.__class__.__name__
         return newDict

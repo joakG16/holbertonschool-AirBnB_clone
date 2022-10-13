@@ -192,6 +192,3 @@ class HBNBCommand(cmd.Cmd):
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
-
-
-# REMEMBER len() STARTS FROM 1
