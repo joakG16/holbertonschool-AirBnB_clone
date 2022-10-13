@@ -114,7 +114,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
                 return True
 
-            return False
+        return False
 
 
 if __name__ == '__main__':
