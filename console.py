@@ -89,7 +89,11 @@ class HBNBCommand(cmd.Cmd):
             objDict = storage.all()
 
             objList = []
+            # iterate through the objects (represented as the value
+            # in the dictionary from storage.all())
             for currentObject in objDict.values():
+                # if we have an argument, then we need to filter what
+                # goes into the list. We use 'isinstance' for that.
                 if len(inputArgs) >= 1:
                     if isinstance(currentObject, eval(inputArgs[0])) == False:
                         continue
