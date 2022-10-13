@@ -29,15 +29,7 @@ class HBNBCommand(cmd.Cmd):
         inputArgs = arg.split()
 
         # ERRORS
-        if len(inputArgs) <= 0:
-            print("** class name missing **")
-            errorHappened = True
-        else:
-            try:
-                eval(inputArgs[0])
-            except Exception:
-                print("** class doesn't exist **")
-                errorHappened = True
+        self.checkArgs(arg, 2)
 
         # NO ERRORS
         if errorHappened is False:
@@ -52,7 +44,7 @@ class HBNBCommand(cmd.Cmd):
         """
 
         # calls the custom argument condition checker
-        errorHappened = self.checkArgs(arg)
+        errorHappened = self.checkArgs(arg, 4)
 
         # if no error happened proceed with the program
         if errorHappened is False:
@@ -63,9 +55,14 @@ class HBNBCommand(cmd.Cmd):
             print(objDict[objKey])
 
     def do_destroy(self, arg):
+        """
+        It checks if the arguments
+        are valid, if they are, it deletes the object from the dictionary and saves the
+        dictionary to the file
+        """
 
         # calls the custom argument condition checker
-        errorHappened = self.checkArgs(arg)
+        errorHappened = self.checkArgs(arg, 4)
 
         # if no error happened proceed with the program
         if errorHappened is False:
@@ -74,10 +71,9 @@ class HBNBCommand(cmd.Cmd):
             objDict = storage.all()
 
             objDict.pop(objKey)
-
             storage.save()
 
-    def checkArgs(self, newArgs):
+    def checkArgs(self, newArgs, numberFlag):
         """
         It checks if the
         arguments passed to the command are valid.
@@ -87,34 +83,38 @@ class HBNBCommand(cmd.Cmd):
 
         argsList = newArgs.split()
 
-    # CHECKS CLASS NAME CONDITIONS
-        # if the class name is missing
-        if len(argsList) <= 0:
-            print("** class name missing **")
-            return True
-        # checks if the class name exists
-        try:
-            eval(argsList[0])
-        except Exception:
-            print("** class doesn't exist **")
-            return True
 
-    # CHECKS ID CONDITONS
-        # if the instance id is missing
-        if len(argsList) < 2:
-            print("** instance id missing **")
-            return True
+        if numberFlag >= 1:
+        # CHECKS CLASS NAME CONDITIONS
+            # if the class name is missing
+            if len(argsList) <= 0:
+                print("** class name missing **")
+                return True
+        if numberFlag >= 2:
+            # checks if the class name exists
+            try:
+                eval(argsList[0])
+            except Exception:
+                print("** class doesn't exist **")
+                return True
 
-        # tries to find the object in the dictionary of stored objects
-        # using the key. If it is not found, it will print an error message.
-        objKey = f"{argsList[0]}.{argsList[1]}"
-        objDict = storage.all()  # loads the dict. of stored objects
-        # if key specified is not found
-        if objDict.get(objKey) == None:
-            print("** no instance found **")
-            return True
+        # CHECKS ID CONDITONS
+        if numberFlag >= 3:
+            # if the instance id is missing
+            if len(argsList) < 2:
+                print("** instance id missing **")
+                return True
+        if numberFlag >= 4:
+            # tries to find the object in the dictionary of stored objects
+            # using the key. If it is not found, it will print an error message.
+            objKey = f"{argsList[0]}.{argsList[1]}"
+            objDict = storage.all()  # loads the dict. of stored objects
+            # if key specified is not found
+            if objDict.get(objKey) == None:
+                print("** no instance found **")
+                return True
 
-        return False
+            return False
 
 
 if __name__ == '__main__':
