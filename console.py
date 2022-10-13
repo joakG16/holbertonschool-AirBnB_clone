@@ -25,14 +25,14 @@ class HBNBCommand(cmd.Cmd):
         """
         Creates a new instance of BaseModel
         """
-        errorHappened = False
-        inputArgs = arg.split()
+
 
         # ERRORS
-        self.checkArgs(arg, 2)
+        errorHappened = self.checkArgs(arg, 2)
 
         # NO ERRORS
         if errorHappened is False:
+            inputArgs = arg.split()
             newInstance = eval(inputArgs[0])()
             storage.save()
             print(newInstance.id)
