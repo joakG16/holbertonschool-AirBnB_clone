@@ -26,7 +26,6 @@ class HBNBCommand(cmd.Cmd):
         Creates a new instance of BaseModel
         """
 
-
         # ERRORS
         errorHappened = self.checkArgs(arg, 2)
 
@@ -73,25 +72,59 @@ class HBNBCommand(cmd.Cmd):
             objDict.pop(objKey)
             storage.save()
 
+    def do_all(self, arg):
+        """
+        It prints all the objects
+        in the storage file if no parameter is given.
+        Otherwise only prints the list of objects of the given class
+        """
+
+        inputArgs = arg.split()
+        errorHappened = False
+
+        # We only check the argument if it was given by the user
+        if len(inputArgs) >= 1:
+            errorHappened = self.checkArgs(arg, -1)
+        if errorHappened is False:
+            objDict = storage.all()
+
+            objList = []
+            for currentObject in objDict.values():
+                if len(inputArgs) >= 1:
+                    if isinstance(currentObject, eval(inputArgs[0])) == False:
+                        continue
+                objList.append(str(currentObject))
+            print(objList)
+
     def checkArgs(self, newArgs, numberFlag):
         """
         It checks if the
         arguments passed to the command are valid.
 
+        NumberFlag: This flag is used based on the
+        number passed, and executes the needed "rules/
+        conditions"
+
+        each number adds a function + all of the above:
+        1: if the class name is missing
+        2: if the class exists
+        3: if the instance id is missing
+        4: if the instance exists
+        5:
+        6:
         Returns True on error, false otherwise
         """
 
         argsList = newArgs.split()
 
-
-        if numberFlag >= 1:
         # CHECKS CLASS NAME CONDITIONS
-            # if the class name is missing
+        # if the class name is missing
+        if numberFlag >= 1:
             if len(argsList) <= 0:
                 print("** class name missing **")
                 return True
-        if numberFlag >= 2:
-            # checks if the class name exists
+        # if the class exists
+        if numberFlag >= 2 or numberFlag == -1:
             try:
                 eval(argsList[0])
             except Exception:
@@ -99,11 +132,12 @@ class HBNBCommand(cmd.Cmd):
                 return True
 
         # CHECKS ID CONDITONS
+        # if the instance id is missing
         if numberFlag >= 3:
-            # if the instance id is missing
             if len(argsList) < 2:
                 print("** instance id missing **")
                 return True
+        # if the instance exists
         if numberFlag >= 4:
             # tries to find the object in the dictionary of stored objects
             # using the key. If it is not found, it will print an error message.
