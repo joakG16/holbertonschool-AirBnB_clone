@@ -90,12 +90,13 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
             return True
 
-        # tries to find the object in the dictionary of stored objects
+        # Trying to find the object in the dictionary of stored objects
         # using the key. If it is not found, it will print an error message.
-        objKey = f"{argsList[0]}.{argsList[1]}"
-        objDict = storage.all()  # loads the dict. of stored objects
-        # if key specified is not found
-        if objDict.get(objKey, "Not found") == "Not found":
+        try:
+            objKey = f"{argsList[0]}.{argsList[1]}"
+            objDict = storage.all()  # bringing the dict. of stored objects
+            eval(f"{objDict}{[objKey]}")  # find & print desired object using key
+        except Exception:
             print("** no instance found **")
             return True
 
