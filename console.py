@@ -67,7 +67,7 @@ class HBNBCommand(cmd.Cmd):
                 errorHappened = True
         # if the instance id is missing
         if len(inputArgs) < 2 and errorHappened is False:
-            print("** instance id missing  **")
+            print("** instance id missing **")
             errorHappened = True
 
         if errorHappened is False:
