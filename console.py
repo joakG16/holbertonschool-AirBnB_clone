@@ -95,7 +95,7 @@ class HBNBCommand(cmd.Cmd):
         objKey = f"{argsList[0]}.{argsList[1]}"
         objDict = storage.all()  # loads the dict. of stored objects
         # if key specified is not found
-        if objDict.get(objKey, "Not found") == "Not found":
+        if objDict.get(objKey) == None:
             print("** no instance found **")
             return True
 
