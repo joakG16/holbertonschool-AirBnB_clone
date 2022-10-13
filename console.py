@@ -50,33 +50,57 @@ class HBNBCommand(cmd.Cmd):
         Prints the string representation of an instance based on the class name
         and id
         """
-        inputArgs = arg.split()
-        errorHappened = False
 
-        # if the class name is missing
-        if len(inputArgs) <= 0:
-            print("** class name missing **")
-            errorHappened = True
+        # calls the custom argument condition checker
+        errorHappened = self.checkArgs(arg)
 
-        # checks if the class name exists
-        elif errorHappened is False:
-            try:
-                eval(inputArgs[0])
-            except Exception:
-                print("** class doesn't exist **")
-                errorHappened = True
-        # if the instance id is missing
-        if len(inputArgs) < 2 and errorHappened is False:
-            print("** instance id missing **")
-            errorHappened = True
-
+        # if no error happened proceed with the program
         if errorHappened is False:
-            try:
-                objKey = f"{inputArgs[0]}.{inputArgs[1]}"
-                objDict = storage.all()  # bringing the dict. of stored objects
-                print(objDict[objKey])  # find & print desired object using key
-            except Exception:
-                print("** no instance found **")
+            inputArgs = arg.split()
+            objKey = f"{inputArgs[0]}.{inputArgs[1]}"
+            objDict = storage.all()
+
+            print(objDict[objKey])
+
+    def checkArgs(self, newArgs):
+        """
+        It checks if the
+        arguments passed to the command are valid.
+
+        Returns True on error, false otherwise
+        """
+
+        argsList = newArgs.split()
+
+    # CHECKS CLASS NAME CONDITIONS
+        # if the class name is missing
+        if len(argsList) <= 0:
+            print("** class name missing **")
+            return True
+        # checks if the class name exists
+        try:
+            eval(argsList[0])
+        except Exception:
+            print("** class doesn't exist **")
+            return True
+
+    # CHECKS ID CONDITONS
+        # if the instance id is missing
+        if len(argsList) < 2:
+            print("** instance id missing **")
+            return True
+
+        # Trying to find the object in the dictionary of stored objects
+        # using the key. If it is not found, it will print an error message.
+        try:
+            objKey = f"{argsList[0]}.{argsList[1]}"
+            objDict = storage.all()  # bringing the dict. of stored objects
+            eval(f"{objDict}{[objKey]}")  # find & print desired object using key
+        except Exception:
+            print("** no instance found **")
+            return True
+
+        return False
 
 
 if __name__ == '__main__':
