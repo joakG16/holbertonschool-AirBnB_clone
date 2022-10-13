@@ -62,6 +62,21 @@ class HBNBCommand(cmd.Cmd):
 
             print(objDict[objKey])
 
+    def do_destroy(self, arg):
+
+        # calls the custom argument condition checker
+        errorHappened = self.checkArgs(arg)
+
+        # if no error happened proceed with the program
+        if errorHappened is False:
+            inputArgs = arg.split()
+            objKey = f"{inputArgs[0]}.{inputArgs[1]}"
+            objDict = storage.all()
+
+            objDict.pop(objKey)
+
+            storage.save()
+
     def checkArgs(self, newArgs):
         """
         It checks if the
