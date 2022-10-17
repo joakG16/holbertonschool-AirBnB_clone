@@ -14,13 +14,16 @@ class TestBaseModel(unittest.TestCase):
         ''' test save method '''
         storage.all().clear()
         model = BaseModel()
-        oldDict = model.__dict__["test"]
+        try:
+            oldDictValue = model.__dict__["test"]
+        except Exception:
+            oldDictValue = None
         model.__dict__["test"] = "assertTest"
         model.save()
         objDict = storage.all()
         objId = model.id
         objValue = objDict[f"BaseModel.{objId}"]
-        self.assertNotEqual(objValue.__dict__["test"], oldDict)
+        self.assertNotEqual(objValue.__dict__["test"], oldDictValue)
 
     def test_save_time(self):
         ''' checking the save method '''
