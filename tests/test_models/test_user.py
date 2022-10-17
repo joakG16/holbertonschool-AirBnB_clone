@@ -5,7 +5,7 @@ from models.user import User
 
 class TestUser(unittest.TestCase):
     ''' unittest class for checking User'''
-    
+
     def test_create_user(self):
         ''' creating user class '''
         user1 = User()

@@ -24,6 +24,9 @@ class TestFileStorage(unittest.TestCase):
         storage = FileStorage()
         self.assertEqual(storage.path(), "file.json")
 
+    def save(self):
+        pass
+
 
 if __name__ == "__main__":
     unittest.main()
