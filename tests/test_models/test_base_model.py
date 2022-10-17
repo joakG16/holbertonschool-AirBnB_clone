@@ -12,13 +12,14 @@ class TestBaseModel(unittest.TestCase):
 
     def test_save(self):
         ''' test save method '''
+        storage.all().clear()
         model = BaseModel()
-        up_date = model.__dict__['updated_at']  # storing actual value
-        model.save()  # updating date value
-
-        self.assertNotEqual(model.__dict__['updated_at'], up_date)
-        self.assertEqual(datetime, type(model.created_at))
-        self.assertEqual(datetime, type(model.updated_at))
+        model.__dict__["test"] = "assertTest"
+        model.save()
+        objDict = storage.all()
+        objId = model.id
+        objValue = objDict[f"BaseModel.{objId}"]
+        self.assertEqual(objValue.__dict__["test"], "assertTest")
 
     def test_save_time(self):
         ''' checking the save method '''
