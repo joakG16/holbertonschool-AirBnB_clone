@@ -14,6 +14,9 @@ class test_file_storage(unittest.TestCase):
         inst_ance = BaseModel()
         stor_age = storage.all()
         self.assertIsNotNone(stor_age)
+        self.assertEqual(stor_age, storage.all())
+        self.assertIs(stor_age, storage.all())
+    
 
 if __name__ == '__main__':
     unittest.main()
