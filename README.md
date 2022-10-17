@@ -93,7 +93,7 @@ $
 ```
 
 #
-
+### How to use:
 - __console.py__ commands
 
 	| Function | Description | Usage example |
@@ -106,3 +106,14 @@ $
 	| `do_destroy` | Deletes an instance based on the class name and id | `destroy User [ID]` |
 	| `do_all` | Prints all string representation of all instances | `all` or `all Review`|
 	| `do_update` | Updates an instance based on the class name and id by adding or updating attribute | `update User [ID] email "aibnb@mail.com"`|
+
+
+#
+
+<h2>Authors</h2>
+
+<p><a href="https://www.linkedin.com/in/ismael-soler/">Ismael Soler</a></p>
+<p><a href="https://www.linkedin.com/in/joaquin-dominguez-b986a7249/">Joaquin Dominguez</a></p>
+
+<br>
+Montevideo, Uruguay.
