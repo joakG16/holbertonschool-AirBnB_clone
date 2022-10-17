@@ -80,3 +80,16 @@ EOF  all  create  destroy  help  quit  show  update
 $
 ```
 
+#
+
+<!-- REQUIREMENTS -->
+<h2>Requirements</h2>
+
+<div>
+
+* Allowed editors: vi, vim, emacs
+* All files will be interpreted/compiled on Ubuntu 20.04 LTS using python3 (version 3.8.5)
+* Our code uses the pycodestyle (version 2.7.*)
+* All tests can be executed by using this command: python3 -m unittest discover tests
+
+</div>
