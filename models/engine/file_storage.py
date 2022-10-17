@@ -15,6 +15,12 @@ class FileStorage:
     __file_path = "file.json"
     __objects = {}
 
+    def path(self):
+        """
+        It returns the file path of the file that was opened
+        """
+        return self.__file_path
+
     def all(self):
         """
         It returns the list of all objects of the class.

@@ -50,6 +50,11 @@ class test_file_storage(unittest.TestCase):
         sto_rage.reload()
         self.assertIsNotNone(sto_rage.all())
 
+    def test_file_path(self):
+        """ test for the file path existance """
+        storageInstance = FileStorage()
+        self.assertEqual(storageInstance.path(), "file.json")
+
 
 if __name__ == '__main__':
     unittest.main()
