@@ -43,6 +43,17 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(f'[{type(b_m).__name__}] ({b_m.id}) {b_m.__dict__}',
                          str(b_m))
 
+    def test_save(self):
+        """Test the save method"""
+        c = BaseModel()
+        updated_at = c.__dict__['updated_at']
+        c.save()
+        self.assertNotEqual(c.__dict__['updated_at'], updated_at)
+        self.assertTrue(os.path.isfile('file.json'))
+        new_updated_at = c.__dict__['updated_at']
+        storage.reload()
+        self.assertEqual(c.__dict__['updated_at'], new_updated_at)
+
 
 if __name__ == '__main__':
     unittest.main()
