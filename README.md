@@ -14,25 +14,28 @@ The goal of this project is to deploy in our own server a simple copy of the Air
 
 #
 
-<h2>The Console</h2>
+<h2>The Console (Command Interpreter)</h2>
 
 <div>
 
 * creates a data model
-* store and persist objects to a JSON file
 * manage (create, update, destroy, etc) objects via a console/command interpreter
+* store and persist objects to a JSON file
 
 </div>
 
-<p>The first part consists in creating a storage engine. This storage engine will be use to differentiate "My Object" and "How it is stored and persisted". This abstraction will allow us to chage the type of stoarge easily without updating all of our codebase.</p>
+<p>The first part consists in creating a storage engine. This storage engine will be used to differentiate the actual object from how it's stored and persisted . This abstraction will allow us to chage the type of stoarge easily without updating all of our codebase.</p>
 
-<img src="https://holbertonintranet.s3.amazonaws.com/uploads/medias/2018/6/815046647d23428a14ca.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOU5BHMTQX4%2F20221014%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20221014T151247Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=6207f4e486b413646cb36c177371e67614cf0d26e1118399a107a0b0c3788e77">
+<img src="https://i.imgur.com/1jNvIGN.png">
 
 #
 
+<!--THE CONSOLE-->
 <h2>What is a console?</h2>
 
 <p>This will work as a <a href="https://github.com/ismael-soler/holbertonschool-simple_shell">Shell</a>. It's exactly the same but limited to a specific use-case. In our case, we want to be able to manage the objects of our project.</p>
+
+<p></p>
 
 <br>
 
@@ -76,3 +79,4 @@ EOF  all  create  destroy  help  quit  show  update
 (hbnb)
 $
 ```
+
