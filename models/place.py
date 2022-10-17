@@ -16,6 +16,3 @@ class Place(BaseModel):
     latitude = 0.0
     longitude = 0.0
     amenity_ids = []  # the list of Amenity.id
-
-if __name__ == '__main__':
-    unittest.main()
