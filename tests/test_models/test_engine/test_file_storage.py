@@ -28,19 +28,6 @@ class test_file_storage(unittest.TestCase):
         key = f"{in_stance.__class__.__name__}.{ins_id}"
         self.assertIn(key, storage.all().keys())
 
-    def test_save(self):
-        """ testing save method """
-        stor_age = FileStorage()
-        ins_tance = BaseModel()
-        ins_tance.name = "Test_name"
-        in_id = ins_tance.id
-        storage.new(ins_tance)
-        storage.save()
-        with open('file.json', 'r') as f:
-            self.assertIsNotNone(f.read())
-        self.assertIsNotNone(
-            storage.all()[ins_tance.__class__.__name__ + "." + in_id])
-
     def test_reload_method(self):
         """ test for reload method """
         object1 = BaseModel()
