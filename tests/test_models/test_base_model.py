@@ -25,14 +25,6 @@ class TestBaseModel(unittest.TestCase):
         objValue = objDict[f"BaseModel.{objId}"]
         self.assertNotEqual(objValue.__dict__["test"], oldDictValue)
 
-    def test_save_time(self):
-        ''' checking the save method '''
-        base_model = BaseModel()
-        base_model.save()
-        base_model.name = "My_first_Model"
-        base_model.save()
-        self.assertNotEqual(base_model.created_at, base_model.updated_at)
-
     def test_to_dict(self):
         ''' test dictionary representation of object method'''
         model1 = BaseModel()
