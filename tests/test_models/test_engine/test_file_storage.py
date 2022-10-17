@@ -46,9 +46,8 @@ class test_file_storage(unittest.TestCase):
         object1 = BaseModel()
         object1.name = "BaseModel_Test"
         object1.save()
-        sto_rage = FileStorage()
-        sto_rage.reload()
-        self.assertIsNotNone(sto_rage.all())
+        storage.reload()
+        self.assertNotEqual(storage.all(), {})
 
     def test_file_path(self):
         """ test for the file path existance """
