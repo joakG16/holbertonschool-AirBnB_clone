@@ -33,9 +33,12 @@ class test_file_storage(unittest.TestCase):
 
     def test_reload_method(self):
         """ test for reload method """
-        storage = FileStorage()
-        storage.reload()
-        self.assertIsNotNone(storage.all())
+        object1 = BaseModel()
+        object1.name = "BaseModel_Test"
+        object1.save()
+        sto_rage = FileStorage()
+        sto_rage.reload()
+        self.assertIsNotNone(sto_rage.all())
 
 
 if __name__ == '__main__':
