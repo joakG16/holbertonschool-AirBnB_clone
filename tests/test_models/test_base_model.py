@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """Tests for base class BaseModel"""
+from time import sleep
 import unittest
 from models.base_model import BaseModel
 from models import storage
@@ -16,7 +17,15 @@ class TestBaseModel(unittest.TestCase):
         model.save()  # updating date value
         
         self.assertNotEqual(model.__dict__['updated_at'], up_date)
-
+    
+    def test_save_time(self):
+        ''' checking the save method '''
+        base_model = BaseModel()
+        base_model.save()
+        base_model.name = "My_first_Model"
+        base_model.save()
+        self.assertNotEqual(base_model.created_at, base_model.updated_at)
+        
     def test_to_dict(self):
         ''' test dictionary representation of object method'''
         model1 = BaseModel()
