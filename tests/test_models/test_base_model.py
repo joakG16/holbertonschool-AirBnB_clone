@@ -18,12 +18,12 @@ class TestBaseModel(unittest.TestCase):
             oldDictValue = model.__dict__["test"]
         except Exception:
             oldDictValue = None
-        model.__dict__["test"] = "assertTest"
-        model.save()
-        objDict = storage.all()
-        objId = model.id
-        objValue = objDict[f"BaseModel.{objId}"]
-        self.assertNotEqual(objValue.__dict__["test"], oldDictValue)
+            model.__dict__["test"] = "assertTest"
+            model.save()
+            objDict = storage.all()
+            objId = model.id
+            objValue = objDict[f"BaseModel.{objId}"]
+            self.assertNotEqual(objValue.__dict__["test"], oldDictValue)
 
     def test_to_dict(self):
         ''' test dictionary representation of object method'''
