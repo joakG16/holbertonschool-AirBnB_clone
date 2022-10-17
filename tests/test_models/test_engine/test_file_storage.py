@@ -44,10 +44,12 @@ class test_file_storage(unittest.TestCase):
     def test_reload_method(self):
         """ test for reload method """
         object1 = BaseModel()
-        object1.name = "BaseModel_Test"
+        updated_time = object1.__dict__['updated_at']
         object1.save()
+        self.assertNotEqual(object1.__dict__['updated_at'], updated_time)
+        new_updated_time = object1.__dict__['updated_at']
         storage.reload()
-        self.assertNotEqual(storage.all(), {})
+        self.assertEqual(object1.__dict__['updated_at'], new_updated_time)
 
     def test_file_path(self):
         """ test for the file path existance """
