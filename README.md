@@ -14,6 +14,7 @@ The goal of this project is to deploy in our own server a simple copy of the Air
 
 #
 
+
 <h2>The Console (Command Interpreter)</h2>
 
 <div>
@@ -28,6 +29,17 @@ The goal of this project is to deploy in our own server a simple copy of the Air
 
 <img src="https://i.imgur.com/1jNvIGN.png">
 
+<!-- REQUIREMENTS -->
+<h2>Requirements</h2>
+
+<div>
+
+* Allowed editors: vi, vim, emacs
+* All files will be interpreted/compiled on Ubuntu 20.04 LTS using python3 (version 3.8.5)
+* Our code uses the pycodestyle (version 2.7.*)
+* All tests can be executed by using this command: python3 -m unittest discover tests
+
+</div>
 #
 
 <!--THE CONSOLE-->
@@ -82,14 +94,15 @@ $
 
 #
 
-<!-- REQUIREMENTS -->
-<h2>Requirements</h2>
+- __console.py__ commands
 
-<div>
-
-* Allowed editors: vi, vim, emacs
-* All files will be interpreted/compiled on Ubuntu 20.04 LTS using python3 (version 3.8.5)
-* Our code uses the pycodestyle (version 2.7.*)
-* All tests can be executed by using this command: python3 -m unittest discover tests
-
-</div>
+	| Function | Description | Usage example |
+	| -- | -- | -- |
+	| `do_quit` | Exit the progrmm | `quit` |
+	| `do_EOF` | Exit the program handling End of File (ctrl + D) | ctrl + D |
+	| `emptyline` | Do nothing | empty line + enter |
+	| `do_create` | Creates a new instance of a given class | `create BaseModel` |
+	| `do_show` | Prints the string representation of an instance | `show User [ID]` |
+	| `do_destroy` | Deletes an instance based on the class name and id | `destroy User [ID]` |
+	| `do_all` | Prints all string representation of all instances | `all` or `all Review`|
+	| `do_update` | Updates an instance based on the class name and id by adding or updating attribute | `update User [ID] email "aibnb@mail.com"`|
