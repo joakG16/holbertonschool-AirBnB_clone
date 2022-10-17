@@ -13,14 +13,12 @@ class TestBaseModel(unittest.TestCase):
     ''' unittest class for checking BaseModel'''
 
     def test_save(self):
-        """test save method"""
-        newModel = BaseModel()
-        try:
-            os.remove(os.path.exists("file.json"))
-        except Exception:
-            pass
-        newModel.save()
-        self.assertTrue(os.path.exists("file.json"))
+        ''' test save method '''
+        model = BaseModel()
+        up_date = model.__dict__['updated_at']  # storing actual value
+        model.save()  # updating date value
+
+        self.assertNotEqual(model.__dict__['updated_at'], up_date)
 
     def test_to_dict(self):
         ''' test dictionary representation of object method'''
