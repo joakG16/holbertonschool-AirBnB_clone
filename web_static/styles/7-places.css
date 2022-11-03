@@ -1,0 +1,25 @@
+/* renember: - everything is a box in css
+             - articles are block-level elements */
+
+div.container section.places h1 {
+   font-size: 30px;
+   text-align: left;
+   margin-left: 30px;
+}
+div.container section.places .places-listings{
+   display: flex;
+   flex-wrap: wrap;
+   flex-direction: wrap;
+   justify-content: center;
+}
+div.container section.places article {
+   width: 390px;
+   padding: 20px;
+   margin: 20px;
+   border: #FF5A5F solid 1px;
+   border-radius: 4px;
+}
+div.container section.places article h2 {
+   font-size: 30px;
+   text-align: center;
+}
